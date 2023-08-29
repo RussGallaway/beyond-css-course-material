@@ -9,3 +9,64 @@ body {
   text-align: center;
   padding: 10vh 0;
 }
+
+@mixin linear-gradient($deg: 45deg, $clr-1: red, $clr-2: blue) {
+  background-image: linear-gradient($deg, $clr-1, $clr-2);
+}
+
+.section-one {
+  @include linear-gradient();
+}
+
+.section-two {
+  @include linear-gradient(-72deg, purple, limegreen);
+}
+
+.section-three {
+  @include linear-gradient(0deg, orange, yellow);
+}
+
+@mixin pseudo-underline($width, $height, $background-color, $margin) {
+  &::after {
+    content: '';
+    display: block;
+    width: $width;
+    height: $height;
+    background-color: $background-color;
+    margin: $margin;
+  }
+}
+
+.title {
+  @include pseudo-underline(5rem, 1px, black, 2em auto)
+}
+
+@mixin ui-element($size, $color, $bg-color, $hover-color, $hover-bg-color) {
+  display: inline-block;
+  padding: $size calc(3*$size);
+  color: $color;
+  background-color: $bg-color;
+
+  &:hover,
+  &:focus {
+    color: $hover-color;
+    background-color: $hover-bg-color;
+  }
+}
+
+.button-one {
+  @include ui-element(0.5em, white, black, black, white);
+}
+
+.button-two {
+  @include ui-element(1em, yellow, #3b0f0f, #3b0f0f, yellow);
+}
+
+.bagde-one {
+  @include ui-element(0.5em, black, white, black, white);
+}
+
+.badge-two {
+  @include ui-element(0.25em, #006eff, #0f0f1d, #006eff, #0f0f1d);
+}
+
